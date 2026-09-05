@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunday Terrarium Workshop | Planterie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F2E8;
+    --cream-2:#EFE9DA;
+    --forest:#31432E;
+    --forest-2:#3F5638;
+    --sage:#8B9A79;
+    --clay:#B0632F;
+    --ink:#26291F;
+    --line:#DAD2BE;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    color:var(--forest);
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;line-height:1.55;}
+  .wrap{max-width:480px;margin:0 auto;padding:0 22px;}
+  a{text-decoration:none;color:inherit;}
+
+  /* Top bar - brand only, no nav */
+  .topbar{
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-bottom:1px solid var(--line);
+    background:var(--cream);
+  }
+  .brandmark{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--forest);
+    letter-spacing:0.01em;
+  }
+
+  /* Hero */
+  .hero{
+    padding:36px 0 28px;
+    text-align:left;
+  }
+  .hero-eyebrow{
+    font-size:14px;
+    color:var(--clay);
+    font-weight:500;
+    margin-bottom:10px;
+  }
+  .hero h1{
+    font-size:34px;
+    line-height:1.14;
+    margin-bottom:16px;
+  }
+  .hero p.sub{
+    font-size:16.5px;
+    color:#4A4D3F;
+    max-width:38ch;
+    margin-bottom:26px;
+  }
+  .hero-image{
+    width:100%;
+    aspect-ratio: 4/5;
+    border-radius:18px;
+    margin-top:26px;
+    background:
+      radial-gradient(circle at 30% 22%, #EAF0DE 0%, transparent 45%),
+      linear-gradient(160deg, #405B39 0%, #2C3E28 65%, #23301F 100%);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-image svg{position:absolute;inset:0;width:100%;height:100%;}
+
+  /* Buttons */
+  .btn-primary{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:var(--forest);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:16.5px;
+    padding:16px 20px;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 6px 16px rgba(49,67,46,0.22);
+  }
+  .btn-primary:active{transform:translateY(1px);}
+  .btn-note{
+    text-align:center;
+    font-size:12.5px;
+    color:#6B6E5D;
+    margin-top:10px;
+  }
+
+  section{padding:34px 0;border-top:1px solid var(--line);}
+
+  /* What you'll do */
+  .kicker{
+    font-size:13.5px;
+    color:var(--clay);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .section-title{
+    font-size:24px;
+    margin-bottom:14px;
+    line-height:1.22;
+  }
+  .lede{
+    font-size:15.5px;
+    color:#4A4D3F;
+    margin-bottom:22px;
+  }
+
+  /* Process steps - a real sequence, numbered */
+  .steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;}
+  .step{
+    display:flex;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .step:first-child{border-top:none;padding-top:0;}
+  .step-num{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    color:var(--sage);
+    min-width:26px;
+  }
+  .step-body h3{
+    font-size:16.5px;
+    color:var(--ink);
+    font-weight:600;
+    font-family:'Work Sans', sans-serif;
+    margin-bottom:4px;
+  }
+  .step-body p{font-size:14.5px;color:#5A5D4C;}
+
+  /* Details card */
+  .details-card{
+    background:var(--cream-2);
+    border-radius:16px;
+    padding:22px;
+  }
+  .detail-row{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    padding:12px 0;
+    border-top:1px solid var(--line);
+  }
+  .detail-row:first-child{border-top:none;padding-top:0;}
+  .detail-label{font-size:14px;color:#5A5D4C;}
+  .detail-value{font-size:14.5px;font-weight:600;color:var(--forest);text-align:right;}
+
+  /* Who it's for */
+  .fit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .fit-item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    font-size:15px;
+    color:#3A3D30;
+  }
+  .fit-item svg{flex-shrink:0;margin-top:2px;}
+
+  /* Care teaser */
+  .care-box{
+    background:var(--forest);
+    color:var(--cream);
+    border-radius:16px;
+    padding:24px;
+  }
+  .care-box h3{
+    color:var(--cream);
+    font-size:19px;
+    margin-bottom:10px;
+  }
+  .care-box p{
+    color:#D9DFC9;
+    font-size:14.5px;
+  }
+
+  /* Sticky bottom CTA on mobile */
+  .sticky-cta{
+    position:sticky;
+    bottom:0;
+    background:linear-gradient(to top, var(--cream) 70%, rgba(246,242,232,0));
+    padding:16px 22px 20px;
+    margin-top:-10px;
+  }
+  .sticky-cta .wrap{padding:0;}
+
+  footer{
+    padding:30px 0 40px;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  footer p{font-size:13px;color:#7A7D6B;}
+  footer .foot-brand{
+    font-family:'Fraunces', serif;
+    font-size:16px;
+    color:var(--forest);
+    margin-bottom:6px;
+  }
+
+  @media (min-width:520px){
+    .hero h1{font-size:40px;}
+  }
+
+  /* ===== Desktop layout ===== */
+  @media (min-width:960px){
+    .wrap{max-width:1120px;padding:0 40px;}
+
+    .topbar{padding:22px 40px;}
+
+    /* Hero becomes two columns: copy left, jar right */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      align-items:center;
+      gap:64px;
+      padding:64px 0 72px;
+    }
+    .hero-copy{grid-column:1;}
+    .hero h1{font-size:52px;line-height:1.1;max-width:11ch;}
+    .hero p.sub{font-size:18px;max-width:34ch;margin-bottom:30px;}
+    .hero .btn-primary{width:auto;display:inline-block;padding:17px 36px;}
+    .hero .btn-note{text-align:left;margin-top:12px;}
+    .hero-image{
+      grid-column:2;grid-row:1 / span 2;
+      aspect-ratio:4/4.6;margin-top:0;
+      max-width:440px;justify-self:end;
+    }
+
+    section{padding:64px 0;}
+
+    /* Steps: 4-across grid instead of stacked list */
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:28px;
+    }
+    .step{
+      flex-direction:column;
+      border-top:none;
+      padding:0;
+      gap:10px;
+    }
+    .step-num{font-size:26px;}
+
+    .section-title{font-size:30px;max-width:20ch;}
+    .lede{font-size:16.5px;max-width:56ch;}
+
+    /* Details card + who-it's-for side by side */
+    .details-who-grid{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:56px;
+      align-items:start;
+    }
+    .details-card{padding:30px;}
+
+    /* Second CTA: centered, not full width */
+    section[style*="padding-top:0"] {
+      display:flex;justify-content:center;padding:24px 0 0;
+    }
+    section[style*="padding-top:0"] .btn-primary{width:auto;padding:17px 44px;}
+
+    .care-box{padding:36px 44px;max-width:760px;margin:0 auto;}
+    .care-box h3{font-size:22px;}
+    .care-box p{font-size:15.5px;max-width:64ch;}
+
+    /* Final CTA */
+    section#book{padding:72px 0 80px;}
+    section#book .btn-primary{width:auto;display:inline-block;padding:18px 48px;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="brandmark">Planterie</span>
+  </div>
+
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="hero-eyebrow">Sunday Guided Terrarium Workshop · 11am&ndash;12pm</div>
+        <h1>Build a tiny world in a jar, guided start to finish.</h1>
+        <p class="sub">One slow Sunday hour at our Delhi studio. You'll leave with a finished terrarium you made with your own hands &mdash; and know exactly how to keep it alive.</p>
+
+        <a href="#book" class="btn-primary">Book Now &mdash; ₹300</a>
+        <p class="btn-note">Booking fee holds your slot. Materials billed separately at the studio.</p>
+      </div>
+
+      <div class="hero-image" aria-hidden="true">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bgGlow" cx="38%" cy="20%" r="75%">
+              <stop offset="0%" stop-color="#5C7A4A"/>
+              <stop offset="45%" stop-color="#3A5233"/>
+              <stop offset="100%" stop-color="#212E1C"/>
+            </radialGradient>
+            <linearGradient id="glassBody" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F4F0E2" stop-opacity="0.30"/>
+              <stop offset="55%" stop-color="#F4F0E2" stop-opacity="0.08"/>
+              <stop offset="100%" stop-color="#F4F0E2" stop-opacity="0.22"/>
+            </linearGradient>
+            <linearGradient id="soilGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#6B4A2E"/>
+              <stop offset="100%" stop-color="#4A3120"/>
+            </linearGradient>
+            <radialGradient id="sunSpot" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FCEFC7" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#FCEFC7" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <rect width="400" height="500" fill="url(#bgGlow)"/>
+
+          <!-- soft sunlight -->
+          <circle cx="130" cy="90" r="110" fill="url(#sunSpot)"/>
+
+          <!-- floor shadow -->
+          <ellipse cx="205" cy="452" rx="118" ry="16" fill="#141C10" opacity="0.55"/>
+
+          <!-- jar body (fishbowl silhouette) -->
+          <path d="M108 195
+                   C108 150, 302 150, 302 195
+                   C314 250, 318 330, 300 385
+                   C288 420, 122 420, 110 385
+                   C92 330, 96 250, 108 195 Z"
+                fill="#26331F" opacity="0.9"/>
+
+          <!-- layered fill inside jar -->
+          <clipPath id="jarClip">
+            <path d="M108 195
+                     C108 150, 302 150, 302 195
+                     C314 250, 318 330, 300 385
+                     C288 420, 122 420, 110 385
+                     C92 330, 96 250, 108 195 Z"/>
+          </clipPath>
+
+          <g clip-path="url(#jarClip)">
+            <!-- stones layer -->
+            <rect x="80" y="368" width="260" height="55" fill="#8A8060"/>
+            <circle cx="140" cy="378" r="8" fill="#A79B78"/>
+            <circle cx="170" cy="386" r="6" fill="#75694A"/>
+            <circle cx="230" cy="380" r="9" fill="#9C9270"/>
+            <circle cx="265" cy="388" r="6" fill="#7A6E4E"/>
+            <!-- soil layer -->
+            <rect x="80" y="340" width="260" height="34" fill="url(#soilGrad)"/>
+            <!-- moss layer -->
+            <rect x="80" y="325" width="260" height="20" fill="#4B6A34"/>
+
+            <!-- plants -->
+            <path d="M150 330 Q135 260 158 218 Q158 275 172 322 Z" fill="#3E5A2E"/>
+            <path d="M172 330 Q176 245 214 205 Q198 265 196 324 Z" fill="#588A3E"/>
+            <path d="M196 330 Q216 258 260 240 Q234 278 226 326 Z" fill="#6FA050"/>
+            <path d="M226 330 Q252 285 282 282 Q262 305 252 328 Z" fill="#2F4A26"/>
+            <path d="M158 330 Q150 290 168 265 Q166 300 176 326 Z" fill="#7CAF5E"/>
+
+            <!-- tiny highlight leaves -->
+            <ellipse cx="205" cy="222" rx="7" ry="3" fill="#8FC26E" transform="rotate(-25 205 222)"/>
+            <ellipse cx="182" cy="248" rx="6" ry="2.6" fill="#79A85C" transform="rotate(15 182 248)"/>
+
+            <!-- glass sheen -->
+            <rect x="80" y="150" width="260" height="280" fill="url(#glassBody)"/>
+          </g>
+
+          <!-- jar outline / rim highlight -->
+          <path d="M108 195
+                   C108 150, 302 150, 302 195
+                   C314 250, 318 330, 300 385
+                   C288 420, 122 420, 110 385
+                   C92 330, 96 250, 108 195 Z"
+                fill="none" stroke="#F3EEDD" stroke-width="2.5" opacity="0.45"/>
+          <ellipse cx="205" cy="167" rx="97" ry="20" fill="none" stroke="#F3EEDD" stroke-width="2" opacity="0.4"/>
+
+          <!-- glass highlight streak -->
+          <path d="M128 190 Q118 270 132 360" stroke="#FFFDF4" stroke-width="10" opacity="0.18" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- WHAT HAPPENS -->
+    <section>
+      <div class="kicker">The hour</div>
+      <h2 class="section-title">What you'll actually do</h2>
+      <p class="lede">No experience needed. Our team stays with your group the whole time &mdash; this isn't a kit you're left alone with.</p>
+      <ul class="steps">
+        <li class="step">
+          <span class="step-num">01</span>
+          <div class="step-body">
+            <h3>Pick your plants</h3>
+            <p>Choose from small tropicals suited to closed, low-light living.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">02</span>
+          <div class="step-body">
+            <h3>Layer the base</h3>
+            <p>Stones, charcoal, moss and soil, in the order that keeps a terrarium alive for years.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">03</span>
+          <div class="step-body">
+            <h3>Plant and style</h3>
+            <p>Place your plants and finish the scene &mdash; add a miniature if you'd like one.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">04</span>
+          <div class="step-body">
+            <h3>Take it home</h3>
+            <p>Walk out with a finished 8-inch jar and simple care notes for the weeks ahead.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- DETAILS + WHO IT'S FOR -->
+    <section>
+      <div class="details-who-grid">
+        <div>
+          <div class="kicker">Good to know</div>
+          <h2 class="section-title">What's included</h2>
+          <div class="details-card">
+            <div class="detail-row">
+              <span class="detail-label">When</span>
+              <span class="detail-value">Every Sunday, 11am&ndash;12pm</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Booking fee</span>
+              <span class="detail-value">₹300 (facilitation)</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Material cost</span>
+              <span class="detail-value">₹2,000, paid at studio</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Vessel</span>
+              <span class="detail-value">8-inch glass fishbowl</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Includes</span>
+              <span class="detail-value">Plants, soil, moss, stones</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="kicker">Who this suits</div>
+          <h2 class="section-title">A slow Sunday for anyone who wants one</h2>
+          <ul class="fit-list">
+            <li class="fit-item">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#8B9A79"/><path d="M5 9.5L7.5 12L13 6" stroke="#F6F2E8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>You want a hands-on activity, not a lecture &mdash; you leave with something you made.</span>
+            </li>
+            <li class="fit-item">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#8B9A79"/><path d="M5 9.5L7.5 12L13 6" stroke="#F6F2E8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>You're coming with a partner, a friend, or on your own &mdash; the group session works either way.</span>
+            </li>
+            <li class="fit-item">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="9" fill="#8B9A79"/><path d="M5 9.5L7.5 12L13 6" stroke="#F6F2E8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>You've never kept a terrarium before &mdash; this is designed to start you right.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECOND CTA -->
+    <section style="padding-top:0;border-top:none;">
+      <a href="#book" class="btn-primary">Book Now &mdash; ₹300</a>
+    </section>
+
+    <!-- CARE TEASER -->
+    <section>
+      <div class="care-box">
+        <h3>You won't be guessing afterwards</h3>
+        <p>A terrarium isn't a normal pot &mdash; it's a tiny weather system. We walk you through light, watering and the one mistake that kills most first attempts, so your jar is still thriving months from now.</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="book" style="text-align:center;">
+      <h2 class="section-title" style="margin-bottom:8px;">Slots are limited to keep the group small.</h2>
+      <p class="lede" style="margin-bottom:22px;">Reserve your Sunday spot for ₹300.</p>
+      <a href="#book" class="btn-primary">Book Now</a>
+      <p class="btn-note">You'll choose your date on the next step.</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-brand">Planterie</div>
+      <p>Plant studio &amp; cafe, Delhi</p>
+    </div>
+  </footer>
+
+</body>
+</html>
